@@ -42,16 +42,18 @@ def solver(a_U, a_D, a_P, b):
 def transient_solve_TR(z_edges, Z_P, nt, dt, Gamma_P, phi_0, nz_P, nz_fv, phi_s, tot_rho, c_vol, airdict=None):
     '''
     transient 1-d diffusion finite volume method
-    :param z_edges:
-    :param Z_P:
-    :param nt:
-    :param dt:
-    :param Gamma_P:
-    :param phi_0:
-    :param nz_P:
-    :param nz_fv:
-    :param phi_s:
-    :return phi_t:
+    :param z_edges: = depths halfway in grid cells
+    :param Z_P: = depth at grid cell boundaries
+    :param nt: = time steps
+    :param dt: = delta time per timestep
+    :param Gamma_P: = firn thermal conductivity
+    :param phi_0: = initial temperature
+    :param nz_P: = number of grid cells
+    :param nz_fv: = number of grid cells minus 2
+    :param phi_s: = temperature [0]
+    :return phi_t: = temperature [time]
+    :tot_rho: = density per grid cell
+    :c_vol: = density * heat capacity per grid cell
     '''
 
     phi_t = phi_0

@@ -22,7 +22,7 @@ def read_input(filename):
     spot = os.getcwd()
 
     FID        = os.path.join(spot, filename)
-    data       = np.loadtxt(FID, delimiter=',') #changed 3/6/17 to loadtxt from genfromtxt; much faster
+    data       = np.loadtxt(FID, delimiter=',',encoding='UTF-8') #changed 3/6/17 to loadtxt from genfromtxt; much faster
     xx,yy = np.shape(data)
     if xx>yy:
         input_year = data[:, 0]

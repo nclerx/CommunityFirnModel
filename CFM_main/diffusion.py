@@ -79,7 +79,7 @@ def heatDiff(self,iii):
 
     # fT10m           = interpolate.interp1d(self.z, self.Tz)                                 # temp at 10m depth
     # self.T10m       = fT10m(10)
-    self.T10m       = self.Tz[np.where(self.z>=10.0)[0][0]] #Should be slightly faster than the interpolate.
+    #self.T10m       = self.Tz[np.where(self.z>=10.0)[0][0]] #Should be slightly faster than the interpolate.
 
     if np.any(self.Tz>273.17):
         print('WARNING: TEMPERATURE EXCEEDS MELTING TEMPERATURE')
