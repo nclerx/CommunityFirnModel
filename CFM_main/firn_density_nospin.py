@@ -262,6 +262,7 @@ class FirnDensityNoSpin:
         ### Accumulation ####
         bsf                 = interpolate.interp1d(input_year_bdot,input_bdot,int_type,fill_value='extrapolate') # interpolation function
         self.bdot           = bsf(self.modeltime) # m ice equivalent per year
+        self.bdot[self.bdot < 1e-4] = 0
         self.bdotSec        = self.bdot / S_PER_YEAR / self.c['stpsPerYear'] # accumulation for each time step (meters i.e. per second)
 
         try: #Rolling mean average surface temperature and accumulation rate (vector)
@@ -820,6 +821,8 @@ class FirnDensityNoSpin:
 
                 elif self.c['liquid'] == 'percolation_bucket': ### Max's bucket scheme:
                     if (self.MELT and self.snowmeltSec[iii]>0): #i.e. there is melt
+                        if self.snowmelt[iii] > 1:
+                            print(mtime)
                         self.rho, self.age, self.dz, self.Tz, self.z, self.mass, self.dzn, self.LWC = percolation_bucket(self,iii)
                     else: # no melt, dz after compaction
                         self.dzn    = self.dz[0:self.compboxes]
