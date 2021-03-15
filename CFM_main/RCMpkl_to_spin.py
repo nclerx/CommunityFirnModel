@@ -107,8 +107,6 @@ def makeSpinFiles(pkl_name,timeres='1D',Tinterp='mean',spin_date_st = 1980.0, sp
 
     SPY = 365.25*24*3600
 
-    print('timeres:', timeres)
-
     if type(pkl_name) == str:
     	df_CLIM = pd.read_pickle(pkl_name)
     else: #pkl_name is not actually a pickle, it is the dataframe being passed
