@@ -20,7 +20,6 @@ class isotopeDiffusion:
     Isotope diffusion class.
     '''
 
-
     def __init__(self,spin,config,isotope,stp,z,modeltime=None):
 
         '''
@@ -34,7 +33,7 @@ class isotopeDiffusion:
             isofile = fn[0] + '_{}'.format(self.isotope) + fn[1]
             print(isofile)
             if isotope=='NoDiffusion':
-                isofile = fn[0] + '_d18O' + fn[1]
+                isofile = fn[0] + '_dD' + fn[1]
             input_iso, input_year_iso = read_input(os.path.join(self.c['InputFileFolder'],isofile))
 
             if spin:
@@ -117,6 +116,9 @@ class isotopeDiffusion:
 
         ### Node positions
         phi_s       = self.del_z[0] # isotope value at surface
+        # phi_s       = self.del_z[1] # isotope value at surface
+        # if iii==0:
+        #     print('Caution! line 121, isotopeDiffusion.py')
         phi_0       = self.del_z # initial isotope profile
 
         ### Define diffusivity for each isotopic species
@@ -163,7 +165,13 @@ class isotopeDiffusion:
         self.iso_sig2_z = self.iso_sig2_z + dsig2_dt * self.dt
             
         # Advect profile down
-        self.del_z = np.concatenate(([self.del_s[iii]], self.del_z[:-1]))
-        self.iso_sig2_z = np.concatenate(([self.iso_sig2_s[iii]],self.iso_sig2_z[:-1]))
+        if self.bdot>0.0:
+            self.del_z = np.concatenate(([self.del_s[iii]], self.del_z[:-1]))
+            self.iso_sig2_z = np.concatenate(([self.iso_sig2_s[iii]],self.iso_sig2_z[:-1]))
+        else:
+            pass
+
+        # self.del_z[0] = self.del_z[1]
+        # print('Caution!!! You are altering the upper isotope value! Line 173, isotopeDiffusion.py')
 
         return self.del_z, self.iso_sig2_z 

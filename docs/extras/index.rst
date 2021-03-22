@@ -5,5 +5,11 @@ The Morris and Wingham (2014) paper describes a firn-densification model derived
 
 - View `Morris_CorrectionstoDensificationPaper.pdf <../_static/Morris_CorrectionstoDensificationPaper.pdf>`_.
 
+<<<<<<< HEAD
 Reference:
 Morris, E. M., and Wingham, D. J. ( 2014), Densification of polar snow: Measurements, modeling, and implications for altimetry, J. Geophys. Res. Earth Surf., 119, 349– 365, doi:10.1002/2013JF002898. 
+=======
+    doublegrid.rst
+    initfile.rst
+    MWfix.rst
+>>>>>>> 4378ca8ca179f0603f3bdef972d153c5630d3698
